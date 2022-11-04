@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "dependencies": {
+    "firebase": "^9.8.1",
+    "mongodb": "^4.11.0",
+    "node-cron": "^3.0.2",
+    "node-fetch": "^3.2.10"
+  },
+  "name": "batch-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
