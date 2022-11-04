@@ -13,6 +13,8 @@ fetch('http://hasanadiguzel.com.tr/api/kurgetir')
         data.TCMB_AnlikKurBilgileri.forEach(exchange=>{
             insertExchange.merge(PocketUtility.ConvertToPocket(exchange));
             out.put("exchanges."+insertExchange.get("CurrencyName"),insertExchange);
+            out.put("insertDate",PocketUtility.GetRealDate());
+            out.put("insertTime",PocketUtility.GetRealTime());
             insertExchange = new Pocket();
         })
         new PocketMongo().executeInsert(
