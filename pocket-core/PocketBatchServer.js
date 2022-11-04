@@ -6,6 +6,7 @@ export default class BatchServer{
     run()
     {
         try {
+            console.clear();
             new PocketBatchLoader().load(load=>{
                 if(load.state){
                     load.batchs.forEach(batch=>{
