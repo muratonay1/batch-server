@@ -1,18 +1,20 @@
 {
 	"application":{
-        "name":"batch-server",
-		"version":"1.0.0",
-		"author":"İsmet Murat ONAY"
+        "applicationName":"batch-server",
+		"applicationVersion":"1.0.0",
+		"applicationAuthor":"İsmet Murat ONAY",
+		"applicationUsingDatabase":"mongo"
 	},
 	"settings":{
-		"crashedBatch":"1"
+		"crashedBatch":"1",
+		"executeBatchType":"0"
 	},
 	"batchs":[
 		{
 			"name":"addDataBatch",
 			"path":"./batchs/addDataBatch.js",
 			"type":"batch",
-			"cron":"*/5 * * * *",
+			"cron":"1 * * * *",
 			"status":"1",
             "description":"test batch örneği"
 		},
@@ -20,9 +22,17 @@
 			"name":"endOfDayProcessBatch",
 			"path":"./batchs/endOfDayProcessBatch.js",
 			"type":"batch",
-			"cron":"00 00 * * *",
+			"cron":"* * * * *",
 			"status":"1",
             "description":"Gün sonunda döviz kurlarını alıp db'ye kayıt atan batch"
+		},
+		{
+			"name":"copy",
+			"path":"./batchs/copy.js",
+			"type":"batch",
+			"cron":"* * * * *",
+			"status":"1",
+            "description":"copy batch"
 		}
 	],
 	"connection":{

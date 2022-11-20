@@ -92,18 +92,16 @@ export default class PocketBatchLoader
 		else
 		{
 			var flag = false;
-			for(let i = 0 ; i < localConfig.length ; i++)
-			{
-				if(localFolder[i].split('.')[0] != localConfig[i].name)
+			localConfig.forEach(localConfigBatch=>{
+				for(let i = 0 ; i < localFolder.length ; i++)
 				{
-					flag = false;
-					break;
+					if(localConfigBatch.name == localFolder[i].split('.')[0])
+					{
+						flag = true;
+						break;
+					}
 				}
-				else
-				{
-					flag=true;
-				}
-			}
+			})
 			return flag;
 		}
 	}
@@ -134,7 +132,7 @@ export default class PocketBatchLoader
 							{
 								var syncResponse = new Pocket();
 								syncResponse.put("state",sync)
-								syncResponse.put("batchs",responseDbBatch);
+								syncResponse.put("batchs",_batchConfigFiles);
 								callback(syncResponse);
 							})
 					}
