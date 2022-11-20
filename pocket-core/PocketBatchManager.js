@@ -1,6 +1,9 @@
 import PocketUtility from './PocketUtility.js';
-import {schedule} from 'node-cron';
+import PocketMongo from './PocketMongo.js';
+import { schedule } from 'node-cron';
 import { fork } from 'child_process';
+import { MongoQueryFrom } from '../util/constant.js';
+import Pocket from './Pocket.js';
 export default class PocketBatchManager {
 	/**
 	 * @private
@@ -26,7 +29,30 @@ export default class PocketBatchManager {
 		 */
 		runScript(batchPath, function (err) {
 			if (err) throw err;
-			console.log("[ "+PocketUtility.GetRealDate()+" - "+PocketUtility.GetRealTime()+" ] "+ batchPath + " run and terminated successfull.");
+			var log = new Pocket();
+			log.put("insertTime",PocketUtility.GetRealTime());
+			log.put("insertDate",PocketUtility.GetRealDate());
+			log.put("service",batchPath);
+			try
+			{
+				new PocketMongo().executeInsert(
+					{
+						from : MongoQueryFrom.LOGS,
+						params: log
+					},
+					(response)=>
+					{
+						if(response)
+						{
+							console.log("[ "+PocketUtility.GetRealDate()+" - "+PocketUtility.GetRealTime()+" ] "+ batchPath + " run and terminated successfull.");
+						}
+					}
+				)
+			}
+			catch (error)
+			{
+				throw new Error("Logging Error.").stack
+			}
 		});
 	}
 	/**
@@ -36,12 +62,30 @@ export default class PocketBatchManager {
 	 * new PocketBatchManager().execute('./batch/testBatch.js',"* * * * *") -> Every Minutes Run
 	 */
 	execute(script, cron) {
-		console.log(
-			"[" + this.getBatchName(script) + "]" + " is included in the job queue."
-		);
+		console.log("[" + this.getBatchName(script) + "]" + " is included in the job queue.");
 		schedule(cron, () => {
 			this.RunnableBatch(script);
 		});
+	}
+	/**
+	 *
+	 * @param {Array} bulkArray
+	 */
+	executeBulk(bulkArray) {
+		var infoBatch = [];
+		bulkArray.forEach(bulkBatchs=>{
+			infoBatch.push({
+				"Batch Name":this.getBatchName(bulkBatchs.script),
+				"Cron":bulkBatchs.cron,
+				"Process PID":process.pid
+			});
+		});
+		PocketUtility.table(infoBatch);
+		bulkArray.forEach(singleBulkBatch=>{
+			schedule(singleBulkBatch.cron, () => {
+				this.RunnableBatch(singleBulkBatch.script);
+			});
+		})
 	}
 	/**
 	 * @private
