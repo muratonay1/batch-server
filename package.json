@@ -8,9 +8,9 @@
   },
   "name": "batch-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "test.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node test.js"
   },
   "author": "",
   "license": "ISC",

@@ -10,16 +10,26 @@ export const Database ={
 
 export const Collection = {
     "TEST_COLLECTION"   :"testCollection",
-    "BATCH"             :"batch"
+    "BATCH"             :"batch",
+    "LOGS"              :"logs"
 }
 
 export const MongoQueryFrom = {
-    "TEST_COLLECTION"   :    Database.TEST + "." + Collection.TEST_COLLECTION,
-    "BATCH"             :   Database.ADMIN + "." + Collection.BATCH
+    "TEST_COLLECTION"   :       Database.TEST + "." + Collection.TEST_COLLECTION,
+    "BATCH"             :       Database.ADMIN + "." + Collection.BATCH,
+    "LOGS"              :       Database.ADMIN + "." + Collection.LOGS
 }
 export const Status = {
     "ACTIVE"    :"1",
     "PASSIVE"   :"0"
+}
+export const ExecuteBatchType = {
+    "SINGLE":"1",
+    "BULK":"0"
+}
+
+export const ConfigError = {
+    "INVALID" : "Invalid config property"
 }
 
 
