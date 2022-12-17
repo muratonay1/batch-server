@@ -1,11 +1,8 @@
-import PocketConfigManager from './pocket-core/PocketConfigManager.js';
-import PocketUtility from './pocket-core/PocketUtility.js';
+import Pocket from "./pocket-core/Pocket.js";
+import PocketService from "./pocket-core/PocketService.js";
+import PocketUtility from "./pocket-core/PocketUtility.js";
 
-let configManager = new PocketConfigManager();
-
-configManager.startApplicationInfo().then((response)=>{
-
-
-}).catch((error)=>{
-    console.log(error);
+PocketService.execute("GetMongoLogs",{},(response)=>{
+    console.log("response = ");
+    console.log(response)
 })

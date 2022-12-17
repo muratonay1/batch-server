@@ -15,14 +15,14 @@ const PocketUtility = {
 	 * 09:37 AM
 	 */
 	GetRealTime() {
-		var time = new Date();
-		var hour = time.getHours().toString();
+		let time = new Date();
+		let hour = time.getHours().toString();
 		hour = hour.length == 1 ? '0'+hour:hour;
-		var minutes = time.getMinutes().toString();
+		let minutes = time.getMinutes().toString();
 		minutes = minutes.length == 1 ? '0'+minutes:minutes;
-		var second = time.getSeconds().toString();
+		let second = time.getSeconds().toString();
 		second = second.length == 1 ? '0'+second:second;
-		var result = hour+minutes+second;
+		let result = hour+minutes+second;
 		return result;
 	},
 	/**
@@ -34,20 +34,20 @@ const PocketUtility = {
 		function isSeperate() {
 			return seperate != undefined ? true : false;
 		}
-		var date = new Date();
-		var fullDate = "";
-		var day =
+		let date = new Date();
+		let fullDate = "";
+		let day =
 			date.getDay().toString().length == 1
 				? "0" + date.getDay()
 				: date.getDay();
-		var month =
+		let month =
 			date.getMonth().toString().length == 1
 				? "0" + date.getMonth()
 				: date.getMonth();
-		var year = date.getFullYear();
+		let year = date.getFullYear();
 
-		var DEFAULT = year.toString() + month.toString() + day.toString();
-		var SEPETARED =
+		let DEFAULT = year.toString() + month.toString() + day.toString();
+		let SEPETARED =
 			year.toString() + seperate + month.toString() + seperate + day.toString();
 		if (format == undefined) fullDate = DEFAULT;
 		if (format == "yyyyMMdd") fullDate = !isSeperated() ? DEFAULT : SEPETARED;
@@ -271,6 +271,40 @@ const PocketUtility = {
 		  result += `${r}\n`;
 		}
 		console.log(result);
+	},
+	/**
+	 *
+	 * @param {any} obj
+	 * @returns {Boolean}
+	 * @example
+	 * 	let data1 = []; //true
+		let data2 = ["1"]; //dalse
+		let data3 = {}; //true
+		let data4 = {"name":"murat"}; //false
+		let data5 = undefined; //true
+		let data6 = null; //true
+		let data7 = ""; //true
+		let data8 = "1"; //false
+		let data9 = "  "; //false
+		let data10 = {"name":"murat","info":{"phone":"0541","detail":{}}}; //false
+
+		console.log(PocketUtility.isEmptyObject(data1));
+		console.log(PocketUtility.isEmptyObject(data2));
+		console.log(PocketUtility.isEmptyObject(data3));
+		console.log(PocketUtility.isEmptyObject(data4));
+		console.log(PocketUtility.isEmptyObject(data5));
+		console.log(PocketUtility.isEmptyObject(data6));
+		console.log(PocketUtility.isEmptyObject(data7));
+		console.log(PocketUtility.isEmptyObject(data8));
+		console.log(PocketUtility.isEmptyObject(data9));
+		console.log(PocketUtility.isEmptyObject(data10.info.detail)); // true
+		console.log(PocketUtility.isEmptyObject(data10.info.test)); //true
+	 */
+	isEmptyObject(object){
+		for(let checker in object){
+			return !1;
+		}
+		return !0;
 	}
 };
 export default PocketUtility;

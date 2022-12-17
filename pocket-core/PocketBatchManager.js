@@ -10,8 +10,8 @@ export default class PocketBatchManager {
 	 */
 	RunnableBatch(batchPath) {
 		function runScript(batchPath, callback) {
-			var invoked = false;
-			var process = fork(batchPath);
+			let invoked = false;
+			let process = fork(batchPath);
 			process.on("error", function (err) {
 				if (invoked) return;
 				invoked = true;
@@ -53,6 +53,7 @@ export default class PocketBatchManager {
 			{
 				throw new Error("Logging Error.").stack
 			}
+
 		});
 	}
 	/**

@@ -32,4 +32,11 @@ export const ConfigError = {
     "INVALID" : "Invalid config property"
 }
 
+export const ServiceError = {
+    "MISSING_PARAMETER" : "Parameter must be fill"
+}
+export const ServiceParameter = {
+    "MUST | FILL":"1"
+}
+
 
