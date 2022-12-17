@@ -27,20 +27,20 @@ export default class PocketBatchLoader
 		 * @param {*} local
 		 * @returns {Pocket}
 		 */
-		var dbClient = new PocketMongo();
-		var callbackCount=0;
+		let dbClient = new PocketMongo();
+		let callbackCount=0;
 		configBatchs.forEach(confBatch=>{
-			var find = false;
-			for(let i=0;i<dbBatchs.length;i++)
+			let find = false;
+			for(const element of dbBatchs)
 			{
-				if(confBatch.name == dbBatchs[i].name)
+				if(confBatch.name == element.name)
 				{
 					find = true;
 				}
 			}
 			if(find)
 			{
-				var filter = new Pocket();
+				let filter = new Pocket();
 				filter.put("name",confBatch.name)
 				dbClient.executeUpdate(
 					{
@@ -91,11 +91,11 @@ export default class PocketBatchLoader
 		}
 		else
 		{
-			var flag = false;
+			let flag = false;
 			localConfig.forEach(localConfigBatch=>{
-				for(let i = 0 ; i < localFolder.length ; i++)
+				for(const element of localFolder)
 				{
-					if(localConfigBatch.name == localFolder[i].split('.')[0])
+					if(localConfigBatch.name == element.split('.')[0])
 					{
 						flag = true;
 						break;
@@ -110,12 +110,12 @@ export default class PocketBatchLoader
 	 */
 	load(callback)
 	{
-		var batchFolderPath = "./batchs";
-		var _batchConfigFiles = batchConfigFiles.batchs;
+		let batchFolderPath = "./batchs";
+		let _batchConfigFiles = batchConfigFiles.batchs;
 		fs.readdir(batchFolderPath, function (err, batchFolderFiles)
 		{
-			var dbClient = new PocketMongo();
-			var filterPocket = new Pocket();
+			let dbClient = new PocketMongo();
+			let filterPocket = new Pocket();
 			filterPocket.put("type","batch");
 			filterPocket.put("status",Status.ACTIVE);
 			dbClient.executeGet(

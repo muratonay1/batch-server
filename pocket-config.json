@@ -7,14 +7,15 @@
 	},
 	"settings":{
 		"crashedBatch":"1",
-		"executeBatchType":"0"
+		"executeBatchType":"1",
+		"servicePath":"services/"
 	},
 	"batchs":[
 		{
 			"name":"addDataBatch",
 			"path":"./batchs/addDataBatch.js",
 			"type":"batch",
-			"cron":"1 * * * *",
+			"cron":"3 * * * *",
 			"status":"1",
             "description":"test batch örneği"
 		},
@@ -41,7 +42,7 @@
 				"type": "service_account",
 				"project_id": "urban-187fc",
 				"private_key_id": "ccfbcd84a554988e6e668119c6d01cc2a6c85ed5",
-				"private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1iGUz1OIxDrMp\nc2Somc3BvQE4FHO5B+rJZcAh7CGqaVZ30okaB+h2sAZ+JSA55rDPDmwDjPDr33FD\nPVCy09R0KpmwLd/UvIn7GrJMmWFoQDL+IwmS/lmu7gt33ndSwBXooq4USOLdiRQc\n25BocdCe0rV/1fmCXWGwgF08uGEgs/OBhxkL7x7ZvstdTIsUjT/cScQ5l2t/uKNl\nmJQzMAEx84vw7ARDQdGgYWQ6CiuYHnoBej9ehv5FwJejVNdAPVYskd4DESVTgH4D\nFhYpZqEeulaDlokccz3Vpzco8HYLzzyfD8o6JWsMlaaZ5rt2WHI0vtC5DuDAuhXh\nOj+5OY35AgMBAAECggEABf7wbcj2JB3qzb+Pl3CGDuQ74DLvvBCugPKtCQnMNl1W\nk2xXJi6U72eivUOjZ/ouRJaCu47KDdZiXrDNo6xyt9gI3bx0KEoGai5wbW6C/L8j\nGAkG+c2QH4KiCxZkXU22I4oNAyNBqATNLuNTJpn8xKQrxcJG5JcKQRrKSZVC8wIk\nNtr68claFidhiGZfcGFiLAJ0dH664INo7/KQqVrTviXOqHZALjBplRZs8+7IKSxB\nb5SSRPCCNNM1R+4lFNZt3XBTHgtJZM4ICfJydbEj67ZYJ/Pd7gYhX4U1V98l/vOU\nZfAk5g7s6GfSLgjezSFdS8HNaD9WN9omCKHTU9jckQKBgQD2N/dZ31Bn+gzxjb00\nAINjYU29rokXVqU+0Tuh4Ng04jzULiv0I3SfyqBsQhE8DVUw2iHmPpyH7hrjVGW9\npUHnxA2Yce7OUvNumzKpfJwyV7OoA5bhtb2aFYJqAycPXntAHLNFlif5LbMgQPQM\nF2d2/tgkMs/9sckzKZUPwJfv6QKBgQC8vpOojdflViu7DuMqOc0Jgf3RiWSl4e9Q\nIvJF7g4qmfLog2pJ/h1RHbtnxpGie50lKUuulbg2O5HDm3mlfFmmZJdskM4zkiT5\nxAxa9owBQGxzIBFoWWH+cTTyJ7lr3nGOQRqARTigNM6d1xY2rloGPTyWyYoQOmeI\nsvX7bR1zkQKBgQCayTRG24zA0QGyGVkIiAoRP+qPhFnKwj2/7+l9KszA8jkraptX\nL7LxgYC4jhAnoHod7APDqzjce2OL5lLPlkSIX0fsvjNSofNHZWnEAwJu45Od3CPO\nYWKAq2UBIFo93ze8Zk6NQIiAraoebLb/ovb4Z92ZZBg9dLb34vxCmuDpgQKBgD+k\n97+HjPx9USOzgnBTq0sAdWk5riGtjPf1wMJJ4qcE4H79CVNIB/S5VN9KewNSMYw9\nX5LQU5yd+6n8/EkMJGLSWqk2LwH+zs8WB6CIsG8fnTI45wXL1hppbBQXxxOTn7D7\nTQdh0BVdmSpqQ8hOhHbEIXErJo4QU6cpyX5trdexAoGBALvG8Rj3fO5Z5/yPZUhS\nBS7Y2t9GiAT5BAfNpAL7GeQBUGPAMe4/yM/Bo7Q0QctOXDGjtK4y4wHG1ejrb1zz\nbbjfQfwKULViwEVfS132Xv5dOZIPPBjulxDDjUctjQJfH9fkLmn1AkUIuGbCTpCd\nB8tUNUC6UPXQ7AwDrF4XJoGw\n-----END PRIVATE KEY-----\n",
+				"private_key": "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1iGUz1OIxDrMp\nc2Somc3BvQE4FHO5B+rJZcAh7CGqaVZ30okaB+h2sAZ+JSA55rDPDmwDjPDr33FD\nPVCy09R0KpmwLd/UvIn7GrJMmWFoQDL+IwmS/lmu7gt33ndSwBXooq4USOLdiRQc\n25BocdCe0rV/1fmCXWGwgF08uGEgs/OBhxkL7x7ZvstdTIsUjT/cScQ5l2t/uKNl\nmJQzMAEx84vw7ARDQdGgYWQ6CiuYHnoBej9ehv5FwJejVNdAPVYskd4DESVTgH4D\nFhYpZqEeulaDlokccz3Vpzco8HYLzzyfD8o6JWsMlaaZ5rt2WHI0vtC5DuDAuhXh\nOj+5OY35AgMBAAECggEABf7wbcj2JB3qzb+Pl3CGDuQ74DLvvBCugPKtCQnMNl1W\nk2xXJi6U72eivUOjZ/ouRJaCu47KDdZiXrDNo6xyt9gI3bx0KEoGai5wbW6C/L8j\nGAkG+c2QH4KiCxZkXU22I4oNAyNBqATNLuNTJpn8xKQrxcJG5JcKQRrKSZVC8wIk\nNtr68claFidhiGZfcGFiLAJ0dH664INo7/KQqVrTviXOqHZALjBplRZs8+7IKSxB\nb5SSRPCCNNM1R+4lFNZt3XBTHgtJZM4ICfJydbEj67ZYJ/Pd7gYhX4U1V98l/vOU\nZfAk5g7s6GfSLgjezSFdS8HNaD9WN9omCKHTU9jckQKBgQD2N/dZ31Bn+gzxjb00\nAINjYU29rokXVqU+0Tuh4Ng04jzULiv0I3SfyqBsQhE8DVUw2iHmPpyH7hrjVGW9\npUHnxA2Yce7OUvNumzKpfJwyV7OoA5bhtb2aFYJqAycPXntAHLNFlif5LbMgQPQM\nF2d2/tgkMs/9sckzKZUPwJfv6QKBgQC8vpOojdflViu7DuMqOc0Jgf3RiWSl4e9Q\nIvJF7g4qmfLog2pJ/h1RHbtnxpGie50lKUuulbg2O5HDm3mlfFmmZJdskM4zkiT5\nxAxa9owBQGxzIBFoWWH+cTTyJ7lr3nGOQRqARTigNM6d1xY2rloGPTyWyYoQOmeI\nsvX7bR1zkQKBgQCayTRG24zA0QGyGVkIiAoRP+qPhFnKwj2/7+l9KszA8jkraptX\nL7LxgYC4jhAnoHod7APDqzjce2OL5lLPlkSIX0fsvjNSofNHZWnEAwJu45Od3CPO\nYWKAq2UBIFo93ze8Zk6NQIiAraoebLb/ovb4Z92ZZBg9dLb34vxCmuDpgQKBgD+k\n97+HjPx9USOzgnBTq0sAdWk5riGtjPf1wMJJ4qcE4H79CVNIB/S5VN9KewNSMYw9\nX5LQU5yd+6n8/EkMJGLSWqk2LwH+zs8WB6CIsG8fnTI45wXL1hppbBQXxxOTn7D7\nTQdh0BVdmSpqQ8hOhHbEIXErJo4QU6cpyX5trdexAoGBALvG8Rj3fO5Z5/yPZUhS\nBS7Y2t9GiAT5BAfNpAL7GeQBUGPAMe4/yM/Bo7Q0QctOXDGjtK4y4wHG1ejrb1zz\nbbjfQfwKULViwEVfS132Xv5dOZIPPBjulxDDjUctjQJfH9fkLmn1AkUIuGbCTpCd\nB8tUNUC6UPXQ7AwDrF4XJoGw\n-----END PRIVATE KEY-----\n",
 				"client_email": "firebase-adminsdk-9485k@urban-187fc.iam.gserviceaccount.com",
 				"client_id": "110886730921843015485",
 				"auth_uri": "https://accounts.google.com/o/oauth2/auth",
