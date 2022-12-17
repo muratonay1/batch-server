@@ -27,20 +27,20 @@ export default class PocketBatchLoader
 		 * @param {*} local
 		 * @returns {Pocket}
 		 */
-		var dbClient = new PocketMongo();
-		var callbackCount=0;
+		let dbClient = new PocketMongo();
+		let callbackCount=0;
 		configBatchs.forEach(confBatch=>{
-			var find = false;
-			for(let i=0;i<dbBatchs.length;i++)
+			let find = false;
+			for(const element of dbBatchs)
 			{
-				if(confBatch.name == dbBatchs[i].name)
+				if(confBatch.name == element.name)
 				{
 					find = true;
 				}
 			}
 			if(find)
 			{
-				var filter = new Pocket();
+				let filter = new Pocket();
 				filter.put("name",confBatch.name)
 				dbClient.executeUpdate(
 					{
@@ -91,19 +91,17 @@ export default class PocketBatchLoader
 		}
 		else
 		{
-			var flag = false;
-			for(let i = 0 ; i < localConfig.length ; i++)
-			{
-				if(localFolder[i].split('.')[0] != localConfig[i].name)
+			let flag = false;
+			localConfig.forEach(localConfigBatch=>{
+				for(const element of localFolder)
 				{
-					flag = false;
-					break;
+					if(localConfigBatch.name == element.split('.')[0])
+					{
+						flag = true;
+						break;
+					}
 				}
-				else
-				{
-					flag=true;
-				}
-			}
+			})
 			return flag;
 		}
 	}
@@ -112,12 +110,12 @@ export default class PocketBatchLoader
 	 */
 	load(callback)
 	{
-		var batchFolderPath = "./batchs";
-		var _batchConfigFiles = batchConfigFiles.batchs;
+		let batchFolderPath = "./batchs";
+		let _batchConfigFiles = batchConfigFiles.batchs;
 		fs.readdir(batchFolderPath, function (err, batchFolderFiles)
 		{
-			var dbClient = new PocketMongo();
-			var filterPocket = new Pocket();
+			let dbClient = new PocketMongo();
+			let filterPocket = new Pocket();
 			filterPocket.put("type","batch");
 			filterPocket.put("status",Status.ACTIVE);
 			dbClient.executeGet(
@@ -134,7 +132,7 @@ export default class PocketBatchLoader
 							{
 								var syncResponse = new Pocket();
 								syncResponse.put("state",sync)
-								syncResponse.put("batchs",responseDbBatch);
+								syncResponse.put("batchs",_batchConfigFiles);
 								callback(syncResponse);
 							})
 					}

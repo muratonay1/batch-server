@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "express": "^4.18.2",
     "firebase": "^9.8.1",
     "mongodb": "^4.11.0",
     "node-cron": "^3.0.2",
@@ -8,9 +9,9 @@
   },
   "name": "batch-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "test.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node test.js"
   },
   "author": "",
   "license": "ISC",
