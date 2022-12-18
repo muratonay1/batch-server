@@ -10,13 +10,10 @@ let dbClient
 process.on("message",(criteria)=>{
 
     PocketService.parameter(criteria,ServiceParameter["MUST | FILL"]);
-
-    const inCriteria = criteria;
-    console.log(inCriteria);
     dbClient.executeGet(
         {
             from: "admin.logs",
-            filter: new Pocket()
+            filter: criteria
         },
         (responseDbBatch) => {
             process.send(responseDbBatch);

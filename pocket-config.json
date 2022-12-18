@@ -10,6 +10,15 @@
 		"executeBatchType":"1",
 		"servicePath":"services/"
 	},
+	"authorizedServiceMethods":{
+		"PocketService":{
+			"ServiceRunner":false,
+			"getServiceName":false,
+			"findFirstSlash":false,
+			"parameter":true,
+			"execute":true
+		}
+	},
 	"batchs":[
 		{
 			"name":"addDataBatch",
