@@ -1,0 +1,48 @@
+/*
+*   Add this path:
+*   C:/Users/.../AppData/Roaming/Code/User/snippets/SnippetBackup.code-snippets
+*   .code-snippets is a file extension
+*/
+{
+    "PocketService -NEWSCRIPT-Snippet": {
+        "scope": "javascript,typescript",
+        "prefix": "PocketService New Script",
+        "body": [
+           "/*\n\nThis snippets is using for only new create micro service template...\n\nAuthor: www.github.com/muratonay1\n\n*/\n",
+           "import Pocket from '../pocket-core/Pocket.js';",
+           "import PocketMongo from '../pocket-core/PocketMongo.js';",
+           "import PocketUtility from '../pocket-core/PocketUtility.js';",
+           "import PocketService from '../pocket-core/PocketService.js';",
+           "import {ServiceParameter} from '../util/constant.js';",
+           "\n",
+            "process.on('message', (inParameter)=>{\n\t\n\tPocketService.parameter(inParameter,ServiceParameter['MUST | FILL']);\n\t\n\tprocess.send(${returnParameter});\n\tprocess.exit();\n\tprocess.kill();\n});"
+        ],
+        "description": "Create Pocket Service Template"
+    },
+    "PocketService -executeService-Snippet": {
+       "scope": "javascript,typescript",
+       "prefix": "PocketService Execute",
+       "body": [
+           "PocketService.execute('${1:handler}',${2:parameter},(serviceResponse)=>{\n\tconsole.log(serviceResponse}\n)}"
+       ],
+       "description": "Create Pocket Service Template"
+   },
+   "PocketMongo-Insert-Snippet": {
+       "scope": "javascript,typescript",
+       "prefix": "PocketMongo Mongo Insert Snippet",
+       "body": [
+           "//IMPORTANT: You must import \n\n// @import PocketMongo from './pocket-core/PocketMongo.js';\n",
+           "new PocketMongo().executeInsert(\n\t{\n\t\tfrom:'${1:databaseName}.${2:collectionName}',\n\t\tparams:${3:'Parameter'}\n\t},\n\t(insertResponse)=>\n\t{\n\t\tif(insertResponse)\n\t\t{\n\t\t\t//insertResponse is return true or false\n\t\t\treturn insertResponse;\n\t\t}\n\t}\n)"
+       ],
+       "description": "Create Pocket Service Template"
+   },
+   "PocketMongo-Get-Snippet": {
+       "scope": "javascript,typescript",
+       "prefix": "PocketMongo Mongo Get Snippet",
+       "body": [
+           "//IMPORTANT: You must import \n\n// @import PocketMongo from './pocket-core/PocketMongo.js';\n",
+           "new PocketMongo().executeGet(\n\t{\n\t\tfrom:'${1:databaseName}.${2:collectionName}',\n\t\tfilter:${3:'FilterCriteria'}\n\t},\n\t(insertResponse)=>\n\t{\n\t\tif(insertResponse)\n\t\t{\n\t\t\t//insertResponse is return true or false\n\t\t\treturn insertResponse;\n\t\t}\n\t}\n)"
+       ],
+       "description": "Create Pocket Service Template"
+   }
+}
