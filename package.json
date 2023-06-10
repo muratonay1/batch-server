@@ -9,9 +9,9 @@
   },
   "name": "batch-server",
   "version": "1.0.0",
-  "main": "test.js",
+  "main": "seher.js",
   "scripts": {
-    "start": "node test.js"
+    "start": "node seher.js"
   },
   "author": "",
   "license": "ISC",

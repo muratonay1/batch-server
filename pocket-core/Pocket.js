@@ -7,6 +7,9 @@ export default class Pocket {
 	 * private
 	 */
 
+	Pocket(){
+		this.value = value;
+	}
 	create() {
 		return new Pocket();
 	}
@@ -254,4 +257,5 @@ export default class Pocket {
 	isEmpty() {
 		return this.size() == 0 ? true : false;
 	}
+
 }

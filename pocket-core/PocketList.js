@@ -21,7 +21,7 @@
 	 *      console.log(visitor);
 	 * })
 	 */
-	ForEach = function (callback = Pocket) {
+	ForEach = function (callbackfn = Pocket) {
 		var index = 0;
 		var items = new PocketList();
 		for (let i = 0; i < Object.keys(this).length; i++) {
@@ -47,7 +47,7 @@
 			/**
 			 * @returns {Pocket}
 			 */
-			callback(items[item]);
+			callbackfn(items[item]);
 		}
 	};
 

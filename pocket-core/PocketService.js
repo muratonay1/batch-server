@@ -16,20 +16,21 @@ const PocketService = {
 	 * @returns {callback}
 	 * this property is hidden
 	 */
-	ServiceRunner(handler, parameter, callback)
+	ServiceRunner(handler, parameter, done,fail)
 	{
 		/**
 		 *
 		 * @param {NodeRequire} handler
 		 * @param {Pocket} callback
 		 */
-		function run(handler, callback)
+		function run(handler,parameter,callback)
 		{
-			let servicePath = pocketConfig.settings.servicePath + "/" + handler + ".js";
+			let servicePath = pocketConfig.settings.servicePath + handler + ".js";
 			var process = fork(servicePath);
 
 			process.on("message", function (argv)
 			{
+
 				callback(argv);
 			});
 			process.on("exit", function (argv)
@@ -41,20 +42,27 @@ const PocketService = {
 		/**
 		 * @private
 		 */
-		run(handler, function (argv)
-		{
-			callback(argv);
-		});
+		try {
+			run(handler,parameter, function (argv)
+			{
+				done(argv);
+			});
+		} catch (error) {
+			fail(error);
+		}
+
 	},
 	/**
-	 * @param {String} handler Script name.
-	 * @param {String} parameter Service parameter.
-	 * @param {callback} callback return callback
+	 * @param {Object} parameter Script name.
 	 */
-	execute(handler, parameter, callback)
+	execute(parameter)
 	{
+		let handlerName = parameter.handler;
+		let parameterGroup = parameter.params;
+		let doneAction = parameter.done;
+		let failAction = parameter.fail;
 
-		this.ServiceRunner(handler, parameter, callback);
+		this.ServiceRunner(handlerName, parameterGroup, doneAction,failAction);
 	},
 	/**
 	 * @private
