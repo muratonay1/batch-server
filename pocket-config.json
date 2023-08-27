@@ -24,7 +24,7 @@
 			"name":"addDataBatch",
 			"path":"./batchs/addDataBatch.js",
 			"type":"batch",
-			"cron":"3 * * * *",
+			"cron":"* * * * *",
 			"status":"1",
             "description":"test batch örneği"
 		},
@@ -43,6 +43,14 @@
 			"cron":"* * * * *",
 			"status":"1",
             "description":"copy batch"
+		},
+		{
+			"name":"SaveGoldInfoBatch",
+			"path":"./batchs/SaveGoldInfoBatch.js",
+			"type":"batch",
+			"cron":"* * * * *",
+			"status":"1",
+            "description":"gran altın güncel fiyatını collecton'a besleyen template batch"
 		}
 	],
 	"connection":{

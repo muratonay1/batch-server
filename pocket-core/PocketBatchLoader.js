@@ -45,11 +45,14 @@ export default class PocketBatchLoader
 				dbClient.executeUpdate(
 					{
 						from:MongoQueryFrom.BATCH,
-						filter:filter,
-						params:PocketUtility.ConvertToPocket(confBatch)
-					},
-					(response)=>{
+						where:filter,
+						params:PocketUtility.ConvertToPocket(confBatch),
+						done:(response)=>{
 
+						},
+						fail:(error)=>{
+							throw new Error(error);
+						}
 					}
 				)
 			}
@@ -58,11 +61,13 @@ export default class PocketBatchLoader
 				dbClient.executeInsert(
 					{
 						from:MongoQueryFrom.BATCH,
-						params:PocketUtility.ConvertToPocket(confBatch)
-					},
-					(response)=>
-					{
+						params:PocketUtility.ConvertToPocket(confBatch),
+						done:(response)=>{
 
+						},
+						fail:(error)=>{
+							throw new Error(error);
+						}
 					}
 				)
 			}
@@ -118,13 +123,10 @@ export default class PocketBatchLoader
 			let filterPocket = new Pocket();
 			filterPocket.put("type","batch");
 			filterPocket.put("status",Status.ACTIVE);
-			dbClient.executeGet(
-				{
-					from:MongoQueryFrom.BATCH,
-					filter:filterPocket
-				},
-				(responseDbBatch)=>
-				{
+			dbClient.executeGet({
+				from:MongoQueryFrom.BATCH,
+				where:filterPocket,
+				done: (responseDbBatch) =>{
 					if(new PocketBatchLoader().compareLocal(batchFolderFiles,_batchConfigFiles))
 					{
 						new PocketBatchLoader().synchronize(responseDbBatch,_batchConfigFiles,
@@ -140,8 +142,11 @@ export default class PocketBatchLoader
 					{
 						throw new Error("Local batch dosya dizini ve local batch config uyumsuzluğu mevcut. \nBatch tanimlarinizi gözden gecirin.")
 					}
+				},
+				fail:(error)=>{
+					throw new Error(error);
 				}
-			)
+			})
 		});
 	}
 }

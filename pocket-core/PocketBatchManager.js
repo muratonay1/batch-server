@@ -38,20 +38,22 @@ export default class PocketBatchManager {
 				new PocketMongo().executeInsert(
 					{
 						from : MongoQueryFrom.LOGS,
-						params: log
-					},
-					(response)=>
-					{
-						if(response)
-						{
-							console.log("[ "+PocketUtility.GetRealDate()+" - "+PocketUtility.GetRealTime()+" ] "+ batchPath + " run and terminated successfull.");
+						params: log,
+						done:(response)=>{
+							if(response)
+							{
+								console.log("[ "+PocketUtility.GetRealDate()+" - "+PocketUtility.GetRealTime()+" ] "+ batchPath + " run and terminated successfull.");
+							}
+						},
+						fail:(error)=>{
+							throw new Error("Logging Error.");
 						}
 					}
 				)
 			}
 			catch (error)
 			{
-				throw new Error("Logging Error.").stack
+
 			}
 
 		});

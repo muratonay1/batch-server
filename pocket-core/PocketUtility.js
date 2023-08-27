@@ -32,27 +32,31 @@ let PocketUtility = (
 		 * @param {String} seperate {'-', '/', '.'}
 		 *
 		 */
-		function GetRealDate(format, seperate) {
-			function isSeperate() {
-				return seperate != undefined ? true : false;
+		function GetRealDate(format, separate) {
+			function isSeparated() {
+				return separate != undefined ? true : false;
 			}
+
 			let date = new Date();
 			let fullDate = "";
+
 			let day =
-				date.getDay().toString().length == 1
-					? "0" + date.getDay()
-					: date.getDay();
+				date.getDate().toString().length == 1
+					? "0" + date.getDate()
+					: date.getDate();
 			let month =
-				date.getMonth().toString().length == 1
-					? "0" + date.getMonth()
-					: date.getMonth();
+				(date.getMonth() + 1).toString().length == 1
+					? "0" + (date.getMonth() + 1)
+					: (date.getMonth() + 1);
 			let year = date.getFullYear();
 
 			let DEFAULT = year.toString() + month.toString() + day.toString();
-			let SEPETARED =
-				year.toString() + seperate + month.toString() + seperate + day.toString();
+			let SEPARATED =
+				year.toString() + separate + month.toString() + separate + day.toString();
+
 			if (format == undefined) fullDate = DEFAULT;
-			if (format == "yyyyMMdd") fullDate = !isSeperated() ? DEFAULT : SEPETARED;
+			if (format == "yyyyMMdd") fullDate = !isSeparated() ? DEFAULT : SEPARATED;
+
 			return fullDate;
 		}
 		/**
@@ -279,6 +283,16 @@ let PocketUtility = (
 		function isString(value) {
 			return Object.prototype.toString.call(value) == "[object String]"
 		}
+		async function createExceptionLog(client,error,functionName) {
+			let out = new Pocket();
+			out.put("source",functionName)
+			.put("stack",error.stack)
+			.put("message",error.message)
+			.put("date",PocketUtility.GetRealDate())
+			.put("time",PocketUtility.GetRealTime())
+			.put("error",error);
+			await client.db("admin").collection("ErrorLogs").insertOne(out);
+		}
 
 		return {
 			GetRealTime 	:  GetRealTime,
@@ -293,7 +307,8 @@ let PocketUtility = (
 			Decode			:  Decode,
 			isObject		:  isObject,
 			isArray			:  isArray,
-			isString		:  isString
+			isString		:  isString,
+			createExceptionLog:createExceptionLog
 		}
 	}
 )();

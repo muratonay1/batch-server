@@ -10,7 +10,6 @@ process.on("message",(criteria)=>{
     PocketService.parameter(criteria,ServiceParameter["MUST | FILL"]);
     let dbClient = new PocketMongo();
 
-
     dbClient.executeGet(
         {
             from : "test.testCollection",
@@ -18,13 +17,20 @@ process.on("message",(criteria)=>{
         },
         (responsePersonal)=>
         {
-            PocketService.execute("GetMongoLogs",{"service":"./batchs/addDataBatch.js"},(repsonseLogs)=>{
-                let senderArgs = new Pocket();
-                senderArgs.put("logs",repsonseLogs);
-                senderArgs.put("personalInfo",responsePersonal);
-                process.send(senderArgs);
-                process.exit();
-                process.kill();
+            PocketService.execute({
+                handler:"GetMongoLogs",
+                params:{"service":"./batchs/addDataBatch.js"},
+                done:(response)=>{
+                    let senderArgs = new Pocket();
+                    senderArgs.put("logs",response);
+                    senderArgs.put("personalInfo",responsePersonal);
+                    process.send(senderArgs);
+                    process.exit();
+                    process.kill();
+                },
+                fail:(error)=>{
+                    throw new Error(error);
+                }
             })
         }
     )
