@@ -1,7 +1,9 @@
 export const DbError = {
     "PATH_NOT_FOUND"    :"Path bulunamadi",
     "FILTER_NOT_FOUND"  :"Filter bulunamadi",
-    "POCKET_NOT_FOUND"  :"Pocket bulunamadi"
+    "POCKET_NOT_FOUND"  :"Pocket bulunamadi",
+    "SUCCESS_CALLBACK_NOT_FOUND"  :"Response fonksiyonu bulunamadı",
+    "THROW_CALLBACK_NOT_FOUND"  :"Throw fonksiyonu bulunamadı"
 }
 export const Database ={
     "TEST"  :"test",

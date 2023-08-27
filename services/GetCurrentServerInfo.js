@@ -10,24 +10,14 @@ import Pocket from '../pocket-core/Pocket.js';
 import PocketMongo from '../pocket-core/PocketMongo.js';
 import PocketUtility from '../pocket-core/PocketUtility.js';
 import PocketService from '../pocket-core/PocketService.js';
-import {ServiceParameter,Status} from '../util/constant.js';
+import {ServiceParameter} from '../util/constant.js';
 
-process.on('message', (seher)=>{
-    PocketService.parameter(seher,ServiceParameter['MUST | FILL'])
-    var filterPocket = Pocket.prototype.create();
 
-    filterPocket.put("status",Status.ACTIVE);
+process.on('message', (inParameter)=>{
 
-    new PocketMongo().executeGet(
-        {
-            from:'admin.server',
-            filter:filterPocket
-        },
-        (serverInfoResponse)=>
-        {
-            process.send(serverInfoResponse);
-            process.exit();
-            process.kill();
-        }
-    )
+    PocketService.parameter(inParameter,ServiceParameter['MUST | FILL']);
+
+    process.send(returnParameter);
+    process.exit();
+    process.kill();
 });

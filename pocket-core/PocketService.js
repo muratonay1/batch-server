@@ -111,23 +111,42 @@ const PocketService = {
 			}
 			else
 			{
-
 				throw new Error(ServiceError.MISSING_PARAMETER).stack;
 			}
 		}
 		else return true;
+	},
+	/**
+	 *
+	 * @param {NodeJS.Process} sectionProcess
+	 * @param {Object} resp
+	 */
+	Success(sectionProcess,resp){
+		let successPocket = new Pocket();
+		successPocket.put("status","OK")
+		successPocket.put("data",resp);
+		try {
+			sectionProcess.send(successPocket);
+			sectionProcess.exit();
+			sectionProcess.kill();
+		} catch (error) {
+			throw new Error(error);
+		}
+
+	},
+
+	/**
+	 *
+	 * @param {NodeJS.Process} pro
+	 * @param {Object} resp
+	 */
+	Failure(pro,resp){
+		let failurePocket = new Pocket();
+		failurePocket.put("status","ERROR")
+		failurePocket.put("error",resp);
+		pro.send(failurePocket);
+		pro.exit();
+		pro.kill();
 	}
 }
-
-/*
-var descriptor =
-{
-	enumerable	: false,
-	configurable: false,
-	writable	: false,
-	value		: new Error("this property is .")
-}
-Object.defineProperty(PocketService, 'ServiceRunner' , descriptor);
-Object.defineProperty(PocketService, 'getServiceName', descriptor);
-Object.defineProperty(PocketService, 'findFirstSlash', descriptor);*/
 export default PocketService;
